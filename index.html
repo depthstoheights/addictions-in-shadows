@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Addictions in the Shadows - Grace-Based Recovery | Depths to Heights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --grace: #9b59b6;
+            --hope: #3498db;
+            --healing: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a1f2e;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2c3e50 50%, #34495e 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .container {
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            min-height: calc(100vh - 80px);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .header-title {
+            flex: 1;
+        }
+
+        .header h1 {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .header-subtitle {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .audio-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .audio-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Content */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--grace);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Grace Card */
+        .grace-card {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .grace-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .grace-ref {
+            text-align: right;
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--card-shadow);
+            border: 3px solid transparent;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .dashboard-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .dashboard-desc {
+            font-size: 0.95em;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        /* Emergency Button */
+        .emergency-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(231, 76, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        .emergency-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Steps Container */
+        .steps-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--grace);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--grace);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-content {
+            color: #5a6c7d;
+            line-height: 1.7;
+            margin-left: 40px;
+        }
+
+        /* Assessment */
+        .assessment-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .assessment-question {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .assessment-question h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .assessment-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .assessment-option {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .assessment-option:hover {
+            border-color: var(--grace);
+            background: rgba(155, 89, 182, 0.05);
+        }
+
+        .assessment-option.selected {
+            border-color: var(--grace);
+            background: rgba(155, 89, 182, 0.1);
+        }
+
+        /* Resource Item */
+        .resource-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--healing);
+        }
+
+        .resource-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .resource-content {
+            color: #5a6c7d;
+            line-height: 1.7;
+        }
+
+        /* Journal */
+        .journal-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1em;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .journal-textarea:focus {
+            outline: none;
+            border-color: var(--grace);
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--grace);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-large {
+            padding: 15px 35px;
+            font-size: 1.1em;
+        }
+
+        .btn-success {
+            background: var(--healing);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .btn-hope {
+            background: var(--hope);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-full {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        /* Progress Tracker */
+        .progress-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--healing), var(--hope));
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Timer Display */
+        .timer-display {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .timer-count {
+            font-size: 4em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .timer-label {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            background: none;
+            border: none;
+            color: white;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            opacity: 1;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item.active {
+            color: var(--grace);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .nav-text {
+            font-size: 0.75em;
+        }
+
+        /* Messages */
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-success {
+            background: rgba(39, 174, 96, 0.1);
+            border: 2px solid var(--healing);
+            color: var(--healing);
+        }
+
+        .message-info {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid var(--hope);
+            color: var(--hope);
+        }
+
+        .message-warning {
+            background: rgba(243, 156, 18, 0.1);
+            border: 2px solid var(--warning);
+            color: var(--warning);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Audio Element -->
+        <audio id="bgMusic" loop>
+            <source src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA">
+        </audio>
+
+        <!-- Emergency Escape Button (Always Visible) -->
+        <button class="emergency-btn" onclick="app.emergencyEscape()">🆘</button>
+
+        <!-- HOME SCREEN -->
+        <div id="homeScreen" class="screen active">
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <div class="header-title">
+                            <h1>Addictions in the Shadows</h1>
+                            <div class="header-subtitle">Grace-Based Recovery Journey</div>
+                        </div>
+                    </div>
+                    <button class="audio-toggle" onclick="app.toggleAudio()">🔇</button>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="grace-card">
+                    <div class="grace-text">
+                        "There is therefore now no condemnation for those who are in Christ Jesus. For the law of the Spirit of life has set you free in Christ Jesus from the law of sin and death."
+                    </div>
+                    <div class="grace-ref">Romans 8:1-2</div>
+                </div>
+
+                <div class="card">
+                    <h2>Welcome, Beloved Child of God</h2>
+                    <p style="line-height: 1.8; margin-bottom: 20px;">
+                        If you're here, you've taken a courageous step. Maybe it's your first admission that something has control over you. Maybe you've tried to stop countless times. Either way, you are welcome here—not as a failure, but as a beloved child of God seeking freedom.
+                    </p>
+                    <p style="line-height: 1.8; margin-bottom: 20px;">
+                        This is a shame-free zone. Here, we don't minimize your struggle or maximize your guilt. We recognize addiction as a complex battle involving your body, mind, and spirit. And we believe in a God who specializes in setting captives free.
+                    </p>
+                    <p style="font-style: italic; text-align: center; color: var(--grace);">
+                        Your struggle does not define you. Your identity is in Christ.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2>Choose Your Battle</h2>
+                    <p style="margin-bottom: 20px;">Each struggle has its own unique challenges. Select the area where you need support:</p>
+                    
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card" onclick="app.showAddictionSupport('pornography')">
+                            <div class="dashboard-icon">💔</div>
+                            <div class="dashboard-title">Sexual Addiction</div>
+                            <div class="dashboard-desc">Pornography, lust, sexual compulsions</div>
+                        </div>
+                        
+                        <div class="dashboard-card" onclick="app.showAddictionSupport('alcohol')">
+                            <div class="dashboard-icon">🍷</div>
+                            <div class="dashboard-title">Alcohol</div>
+                            <div class="dashboard-desc">From social drinking to dependency</div>
+                        </div>
+                        
+                        <div class="dashboard-card" onclick="app.showAddictionSupport('drugs')">
+                            <div class="dashboard-icon">💊</div>
+                            <div class="dashboard-title">Drugs</div>
+                            <div class="dashboard-desc">Prescription or illegal substances</div>
+                        </div>
+                        
+                        <div class="dashboard-card" onclick="app.showAddictionSupport('gambling')">
+                            <div class="dashboard-icon">🎰</div>
+                            <div class="dashboard-title">Gambling</div>
+                            <div class="dashboard-desc">Betting, lottery, risky investments</div>
+                        </div>
+                        
+                        <div class="dashboard-card" onclick="app.showAddictionSupport('food')">
+                            <div class="dashboard-icon">🍔</div>
+                            <div class="dashboard-title">Food</div>
+                            <div class="dashboard-desc">Emotional eating, binging, restriction</div>
+                        </div>
+                        
+                        <div class="dashboard-card" onclick="app.showAddictionSupport('technology')">
+                            <div class="dashboard-icon">📱</div>
+                            <div class="dashboard-title">Technology</div>
+                            <div class="dashboard-desc">Social media, gaming, internet</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Quick Access Tools</h2>
+                    <button class="btn btn-hope btn-full" onclick="app.showScreen('dailyRecovery')">Today's Recovery Plan</button>
+                    <button class="btn btn-success btn-full" onclick="app.showScreen('assessment')">Take Self-Assessment</button>
+                    <button class="btn btn-warning btn-full" onclick="app.showScreen('twelveSteps')">Biblical 12-Steps</button>
+                    <button class="btn btn-full" onclick="app.showScreen('journal')">Private Recovery Journal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAILY RECOVERY PLAN -->
+        <div id="dailyRecovery" class="screen">
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button class="back-btn" onclick="app.showScreen('homeScreen')">←</button>
+                        <div class="header-title">
+                            <h1>Today's Recovery Plan</h1>
+                            <div class="header-subtitle">One Day at a Time</div>
+                        </div>
+                    </div>
+                    <button class="audio-toggle" onclick="app.toggleAudio()">🔇</button>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="timer-display">
+                    <div class="timer-label">You've Been Clean For:</div>
+                    <div class="timer-count" id="sobrietyTimer">0 Days</div>
+                    <button class="btn btn-large" onclick="app.resetTimer()">Reset Counter</button>
+                    <button class="btn btn-secondary" onclick="app.setSobrietyDate()">Set Sobriety Date</button>
+                </div>
+
+                <div class="grace-card">
+                    <div class="grace-text" id="dailyScripture">Loading today's verse...</div>
+                    <div class="grace-ref" id="dailyReference"></div>
+                </div>
+
+                <div class="card">
+                    <h2>Morning Commitment</h2>
+                    <div class="resource-item">
+                        <div class="resource-title">Surrender Prayer</div>
+                        <div class="resource-content">
+                            "Father, I admit that I am powerless over my addiction. I have tried and failed on my own strength. Today, I surrender my will and my life to Your care. I trust You to do for me what I cannot do for myself. Give me the strength to face today's challenges, the wisdom to avoid triggers, and the courage to reach out when I need help. In Jesus' name, Amen."
+                        </div>
+                    </div>
+                    
+                    <h3>Today I Will:</h3>
+                    <div class="assessment-container">
+                        <div class="assessment-option" onclick="app.toggleCommitment(this)">
+                            <span>✓</span> <span>Start my day with prayer and Scripture</span>
+                        </div>
+                        <div class="assessment-option" onclick="app.toggleCommitment(this)">
+                            <span>✓</span> <span>Contact my accountability partner</span>
+                        </div>
+                        <div class="assessment-option" onclick="app.toggleCommitment(this)">
+                            <span>✓</span> <span>Avoid known triggers and dangerous situations</span>
+                        </div>
+                        <div class="assessment-option" onclick="app.toggleCommitment(this)">
+                            <span>✓</span> <span>Practice HALT awareness (Hungry, Angry, Lonely, Tired)</span>
+                        </div>
+                        <div class="assessment-option" onclick="app.toggleCommitment(this)">
+                            <span>✓</span> <span>End my day with gratitude and reflection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Recovery Activities for Today</h2>
+                    
+                    <div class="steps-container">
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">1</span>
+                                Morning Meditation (10 minutes)
+                            </div>
+                            <div class="step-content">
+                                Sit quietly with God. Read Psalm 51. Ask Him to create a clean heart in you and renew a right spirit within you. Listen for His voice of love, not condemnation.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">2</span>
+                                Identify Today's Triggers
+                            </div>
+                            <div class="step-content">
+                                What situations, emotions, or times of day are most dangerous? Write them down. Make a specific plan for each one. Remember: "God is faithful; he will not let you be tempted beyond what you can bear" (1 Cor 10:13).
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">3</span>
+                                Physical Activity
+                            </div>
+                            <div class="step-content">
+                                Move your body for at least 30 minutes. Walk, run, swim, dance—anything that gets you out of your head and into God's creation. Your body is a temple of the Holy Spirit.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">4</span>
+                                Service to Others
+                            </div>
+                            <div class="step-content">
+                                Find one way to serve someone today. Call a friend who's struggling. Volunteer. Help a neighbor. Getting outside yourself breaks addiction's self-focused cycle.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">5</span>
+                                Evening Review
+                            </div>
+                            <div class="step-content">
+                                Before bed, review your day with honesty and grace. Where did you see God's faithfulness? Where did you struggle? Thank God for progress, no matter how small. Tomorrow is a new day with new mercies.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>When Temptation Strikes Today</h2>
+                    <button class="btn btn-danger btn-full" onclick="app.emergencyEscape()">EMERGENCY ESCAPE PLAN</button>
+                    <button class="btn btn-warning btn-full" onclick="app.showBreathingExercise()">Calm My Mind (Breathing)</button>
+                    <button class="btn btn-hope btn-full" onclick="app.callSponsor()">Call My Support Person</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ASSESSMENT SCREEN -->
+        <div id="assessment" class="screen">
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button class="back-btn" onclick="app.showScreen('homeScreen')">←</button>
+                        <div class="header-title">
+                            <h1>Grace-Based Self-Assessment</h1>
+                            <div class="header-subtitle">Understanding Your Struggle</div>
+                        </div>
+                    </div>
+                    <button class="audio-toggle" onclick="app.toggleAudio()">🔇</button>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="card">
+                    <h2>Before We Begin</h2>
+                    <p style="line-height: 1.8; margin-bottom: 15px;">
+                        This assessment is not about shame or judgment. It's about honestly understanding where you are so you can chart a path forward. Remember, admitting the depth of your struggle is not weakness—it's the beginning of strength.
+                    </p>
+                    <p style="font-style: italic; text-align: center; color: var(--grace);">
+                        "God's strength is made perfect in our weakness" (2 Corinthians 12:9)
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2>Addiction Assessment</h2>
+                    
+                    <div class="assessment-container">
+                        <div class="assessment-question">
+                            <h4>Loss of Control</h4>
+                            <div class="assessment-options">
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'control')">
+                                    <span>I often use more than I intended to</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'control')">
+                                    <span>I've tried to stop or cut down but couldn't</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'control')">
+                                    <span>I make promises to myself I can't keep</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'control')">
+                                    <span>I feel powerless over my behavior</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment-question">
+                            <h4>Life Impact</h4>
+                            <div class="assessment-options">
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'impact')">
+                                    <span>My addiction affects my relationships</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'impact')">
+                                    <span>I've experienced work/school problems</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'impact')">
+                                    <span>My spiritual life has suffered</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'impact')">
+                                    <span>I've had financial consequences</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'impact')">
+                                    <span>My health has been affected</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment-question">
+                            <h4>Emotional & Spiritual State</h4>
+                            <div class="assessment-options">
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'emotional')">
+                                    <span>I feel shame and guilt about my behavior</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'emotional')">
+                                    <span>I hide my behavior from others</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'emotional')">
+                                    <span>I feel distant from God</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'emotional')">
+                                    <span>I use to escape emotional pain</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'emotional')">
+                                    <span>I feel hopeless about changing</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="assessment-question">
+                            <h4>Physical Signs</h4>
+                            <div class="assessment-options">
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'physical')">
+                                    <span>I experience cravings or urges</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'physical')">
+                                    <span>I have withdrawal symptoms when I stop</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'physical')">
+                                    <span>My tolerance has increased over time</span>
+                                </div>
+                                <div class="assessment-option" onclick="app.selectAssessment(this, 'physical')">
+                                    <span>I've had blackouts or memory issues</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-large btn-full" onclick="app.calculateAssessment()">View Assessment Results</button>
+                    <div id="assessmentResult"></div>
+                </div>
+
+                <div class="card">
+                    <h2>What Your Results Mean</h2>
+                    <p style="line-height: 1.8;">
+                        Whatever your score, remember this: recognizing you need help is not defeat—it's the first victory. Every person who has found freedom started exactly where you are: admitting they couldn't do it alone.
+                    </p>
+                    <div class="resource-item">
+                        <div class="resource-title">If You Scored Low (1-5 items)</div>
+                        <div class="resource-content">
+                            You may be in the early stages of a problematic pattern. This is the best time to intervene. Don't wait for it to get worse. Start building healthy boundaries and accountability now.
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-title">If You Scored Moderate (6-10 items)</div>
+                        <div class="resource-content">
+                            Your struggle is significant and likely affecting multiple areas of your life. You need support, structure, and possibly professional help. This is not something to face alone.
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-title">If You Scored High (11+ items)</div>
+                        <div class="resource-content">
+                            You're dealing with serious addiction that requires immediate, comprehensive help. This might include medical supervision, professional counseling, and intensive support. There is no shame in needing help—there is wisdom in seeking it.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BIBLICAL 12 STEPS -->
+        <div id="twelveSteps" class="screen">
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button class="back-btn" onclick="app.showScreen('homeScreen')">←</button>
+                        <div class="header-title">
+                            <h1>Biblical 12-Step Journey</h1>
+                            <div class="header-subtitle">Ancient Wisdom, Proven Path</div>
+                        </div>
+                    </div>
+                    <button class="audio-toggle" onclick="app.toggleAudio()">🔇</button>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="grace-card">
+                    <div class="grace-text">
+                        "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"
+                    </div>
+                    <div class="grace-ref">2 Corinthians 5:17</div>
+                </div>
+
+                <div class="card">
+                    <h2>The 12 Steps Through Scripture</h2>
+                    
+                    <div class="steps-container">
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">1</span>
+                                Admit Powerlessness
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> We admitted we were powerless over our addiction—that our lives had become unmanageable.<br>
+                                <strong>Scripture:</strong> "I know that nothing good lives in me, that is, in my sinful nature. For I have the desire to do what is good, but I cannot carry it out" (Romans 7:18).<br>
+                                <strong>Prayer:</strong> Lord, I admit complete defeat. I cannot overcome this on my own. My way has failed.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">2</span>
+                                Believe in God's Power
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Came to believe that a Power greater than ourselves could restore us to sanity.<br>
+                                <strong>Scripture:</strong> "For it is God who works in you to will and to act in order to fulfill his good purpose" (Philippians 2:13).<br>
+                                <strong>Prayer:</strong> I believe You can do what I cannot. You can restore what I have broken.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">3</span>
+                                Surrender Your Will
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Made a decision to turn our will and our lives over to the care of God.<br>
+                                <strong>Scripture:</strong> "Therefore, I urge you, brothers and sisters, in view of God's mercy, to offer your bodies as a living sacrifice" (Romans 12:1).<br>
+                                <strong>Prayer:</strong> I surrender my will, my plans, my control to You. Take my life and make it Yours.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">4</span>
+                                Moral Inventory
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Made a searching and fearless moral inventory of ourselves.<br>
+                                <strong>Scripture:</strong> "Let us examine our ways and test them, and let us return to the Lord" (Lamentations 3:40).<br>
+                                <strong>Prayer:</strong> Search me, O God, and know my heart; test me and know my anxious thoughts.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">5</span>
+                                Confess to God and Others
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.<br>
+                                <strong>Scripture:</strong> "Therefore confess your sins to each other and pray for each other so that you may be healed" (James 5:16).<br>
+                                <strong>Prayer:</strong> I bring my sins into the light, hiding nothing from You or from trusted others.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">6</span>
+                                Ready for God to Remove Defects
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Were entirely ready to have God remove all these defects of character.<br>
+                                <strong>Scripture:</strong> "Humble yourselves before the Lord, and he will lift you up" (James 4:10).<br>
+                                <strong>Prayer:</strong> I am ready for You to remove what I cannot remove myself.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">7</span>
+                                Humbly Ask God
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Humbly asked Him to remove our shortcomings.<br>
+                                <strong>Scripture:</strong> "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness" (1 John 1:9).<br>
+                                <strong>Prayer:</strong> Please remove these defects. I cannot, but You can. I am willing.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">8</span>
+                                List Those We've Harmed
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Made a list of all persons we had harmed, and became willing to make amends to them all.<br>
+                                <strong>Scripture:</strong> "Therefore, if you are offering your gift at the altar and there remember that your brother or sister has something against you, leave your gift there" (Matthew 5:23-24).<br>
+                                <strong>Prayer:</strong> Show me who I have hurt through my addiction. Give me courage to face the damage.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">9</span>
+                                Make Direct Amends
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Made direct amends to such people wherever possible, except when to do so would injure them or others.<br>
+                                <strong>Scripture:</strong> "If it is possible, as far as it depends on you, live at peace with everyone" (Romans 12:18).<br>
+                                <strong>Prayer:</strong> Give me wisdom and courage to repair what can be repaired, and grace to accept what cannot.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">10</span>
+                                Continue Taking Inventory
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Continued to take personal inventory and when we were wrong promptly admitted it.<br>
+                                <strong>Scripture:</strong> "So, if you think you are standing firm, be careful that you don't fall!" (1 Corinthians 10:12).<br>
+                                <strong>Prayer:</strong> Keep me vigilant, honest, and quick to admit my wrongs.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">11</span>
+                                Prayer and Meditation
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Sought through prayer and meditation to improve our conscious contact with God.<br>
+                                <strong>Scripture:</strong> "Rejoice always, pray continually, give thanks in all circumstances" (1 Thessalonians 5:16-18).<br>
+                                <strong>Prayer:</strong> Draw me closer to You. Let me hear Your voice above all others.
+                            </div>
+                        </div>
+                        
+                        <div class="step-card">
+                            <div class="step-title">
+                                <span class="step-number">12</span>
+                                Carry the Message
+                            </div>
+                            <div class="step-content">
+                                <strong>Traditional:</strong> Having had a spiritual awakening, we tried to carry this message to others.<br>
+                                <strong>Scripture:</strong> "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble" (2 Corinthians 1:3-4).<br>
+                                <strong>Prayer:</strong> Use my story to bring hope to others still trapped in darkness.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Working Your Steps</h2>
+                    <button class="btn btn-full" onclick="app.startStepWork()">Begin Step 1 Work</button>
+                    <button class="btn btn-secondary btn-full" onclick="app.showStepProgress()">View My Progress</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- JOURNAL SCREEN -->
+        <div id="journal" class="screen">
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button class="back-btn" onclick="app.showScreen('homeScreen')">←</button>
+                        <div class="header-title">
+                            <h1>Recovery Journal</h1>
+                            <div class="header-subtitle">Your Private Journey</div>
+                        </div>
+                    </div>
+                    <button class="audio-toggle" onclick="app.toggleAudio()">🔇</button>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="card">
+                    <h2>Today's Reflection</h2>
+                    <h3>What are you feeling right now?</h3>
+                    <textarea class="journal-textarea" id="journalFeeling" placeholder="Be honest. God already knows. This is between you and Him..."></textarea>
+                    
+                    <h3>What triggered you today?</h3>
+                    <textarea class="journal-textarea" id="journalTrigger" placeholder="What situations, emotions, or thoughts led to temptation?"></textarea>
+                    
+                    <h3>Where did you see God's grace today?</h3>
+                    <textarea class="journal-textarea" id="journalGrace" placeholder="Even small victories count. Where did He show up?"></textarea>
+                    
+                    <h3>What are you grateful for?</h3>
+                    <textarea class="journal-textarea" id="journalGratitude" placeholder="List three things, no matter how small..."></textarea>
+                    
+                    <button class="btn btn-success btn-full" onclick="app.saveJournal()">Save Entry</button>
+                    <div id="journalMessage"></div>
+                </div>
+
+                <div class="card">
+                    <h2>Past Entries</h2>
+                    <div id="journalEntries"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADDICTION-SPECIFIC SUPPORT -->
+        <div id="addictionSupport" class="screen">
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button class="back-btn" onclick="app.showScreen('homeScreen')">←</button>
+                        <div class="header-title">
+                            <h1 id="addictionTitle">Specific Support</h1>
+                            <div class="header-subtitle">Targeted Help for Your Struggle</div>
+                        </div>
+                    </div>
+                    <button class="audio-toggle" onclick="app.toggleAudio()">🔇</button>
+                </div>
+            </div>
+            
+            <div class="content" id="addictionContent">
+                <!-- Content will be dynamically loaded based on addiction type -->
+            </div>
+        </div>
+
+        <!-- INFO MODAL -->
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="app.closeModal('infoModal')">×</button>
+                <h2>About This App</h2>
+                
+                <h3>What This App Provides</h3>
+                <p>A comprehensive, grace-based recovery system for believers struggling with addiction. This includes pornography, alcohol, drugs, gambling, food, and technology addictions.</p>
+                
+                <h3>Features</h3>
+                <ul style="line-height: 1.8;">
+                    <li>Grace-based self-assessment tools</li>
+                    <li>Daily Scripture-focused recovery plans</li>
+                    <li>Biblical integration of 12-step principles</li>
+                    <li>Emergency escape system for moments of temptation</li>
+                    <li>Private journaling for honest reflection</li>
+                    <li>Sobriety tracking and milestone celebration</li>
+                    <li>Addiction-specific resources and support</li>
+                </ul>
+                
+                <h3>Privacy & Security</h3>
+                <p>Everything is stored locally on your device. No data is sent to servers. Your struggle remains private.</p>
+                
+                <h3>Remember</h3>
+                <p>Recovery is possible. You are not defined by your struggle. God's grace is sufficient for you.</p>
+                
+                <h3>Install on Phone</h3>
+                <p><strong>iPhone:</strong> Share → Add to Home Screen</p>
+                <p><strong>Android:</strong> Menu → Add to Home Screen</p>
+                
+                <button class="btn btn-full" onclick="app.closeModal('infoModal')">Close</button>
+            </div>
+        </div>
+
+        <!-- ABOUT MODAL -->
+        <div id="aboutModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="app.closeModal('aboutModal')">×</button>
+                <h2>Depths to Heights Ministry</h2>
+                
+                <p><strong>Made by Justin</strong></p>
+                <p>Created with deep compassion for those fighting battles in secret, believing that grace, not shame, leads to freedom.</p>
+                
+                <h3>Our Mission</h3>
+                <p>To provide shame-free, grace-filled, biblically-grounded support for believers struggling with addiction. We believe the church should be a hospital for the broken, not a museum for the perfect.</p>
+                
+                <h3>Core Beliefs</h3>
+                <ul style="line-height: 1.8;">
+                    <li>Addiction is complex—involving body, mind, and spirit</li>
+                    <li>Shame drives addiction; grace breaks it</li>
+                    <li>Recovery requires both divine power and human action</li>
+                    <li>Community and accountability are essential</li>
+                    <li>Your identity is in Christ, not your struggle</li>
+                    <li>There is always hope for change</li>
+                </ul>
+                
+                <p><strong>Website:</strong> <a href="https://depthstoheights.org" target="_blank">depthstoheights.org</a></p>
+                <p><strong>Email:</strong> <a href="mailto:depthstoheights@gmail.com">depthstoheights@gmail.com</a></p>
+                
+                <button class="btn btn-danger btn-large btn-full" onclick="window.open('https://www.paypal.com/donate/?hosted_button_id=8GRE7B8C3TP2U', '_blank')">Support This Ministry</button>
+                
+                <p style="margin-top: 20px; font-style: italic; text-align: center; color: #666;">
+                    "He lifted me out of the slimy pit, out of the mud and mire; he set my feet on a rock and gave me a firm place to stand." - Psalm 40:2
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAVIGATION -->
+        <div class="bottom-nav">
+            <button class="nav-item active" onclick="app.navigate('homeScreen')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </button>
+            <button class="nav-item" onclick="app.navigate('dailyRecovery')">
+                <span class="nav-icon">📅</span>
+                <span class="nav-text">Daily</span>
+            </button>
+            <button class="nav-item" onclick="app.navigate('twelveSteps')">
+                <span class="nav-icon">👣</span>
+                <span class="nav-text">Steps</span>
+            </button>
+            <button class="nav-item" onclick="app.openModal('infoModal')">
+                <span class="nav-icon">ℹ️</span>
+                <span class="nav-text">Info</span>
+            </button>
+            <button class="nav-item" onclick="app.openModal('aboutModal')">
+                <span class="nav-icon">💙</span>
+                <span class="nav-text">About</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const app = {
+            audioPlaying: false,
+            sobrietyDate: localStorage.getItem('sobrietyDate') || new Date().toISOString(),
+            journalEntries: JSON.parse(localStorage.getItem('recoveryJournal') || '[]'),
+            assessmentScores: {},
+            currentAddiction: null,
+            
+            // Daily Scriptures for Recovery
+            recoveryScriptures: [
+                { text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear.", ref: "1 Corinthians 10:13" },
+                { text: "Therefore, there is now no condemnation for those who are in Christ Jesus.", ref: "Romans 8:1" },
+                { text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.", ref: "1 John 1:9" },
+                { text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.", ref: "Psalm 34:18" },
+                { text: "Cast all your anxiety on him because he cares for you.", ref: "1 Peter 5:7" },
+                { text: "Come to me, all you who are weary and burdened, and I will give you rest.", ref: "Matthew 11:28" },
+                { text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God.", ref: "Romans 8:38-39" }
+            ],
+            
+            init() {
+                this.updateSobrietyTimer();
+                this.loadDailyScripture();
+                this.loadJournalEntries();
+                setInterval(() => this.updateSobrietyTimer(), 60000); // Update every minute
+            },
+            
+            toggleAudio() {
+                const audio = document.getElementById('bgMusic');
+                const buttons = document.querySelectorAll('.audio-toggle');
+                
+                if (this.audioPlaying) {
+                    audio.pause();
+                    buttons.forEach(btn => btn.textContent = '🔇');
+                } else {
+                    audio.play().catch(e => console.log('Audio prevented'));
+                    buttons.forEach(btn => btn.textContent = '🔊');
+                }
+                this.audioPlaying = !this.audioPlaying;
+            },
+            
+            showScreen(screenId) {
+                document.querySelectorAll('.screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                document.getElementById(screenId).classList.add('active');
+                window.scrollTo(0, 0);
+                this.updateNavigation(screenId);
+            },
+            
+            navigate(screenId) {
+                this.showScreen(screenId);
+            },
+            
+            updateNavigation(screenId) {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                const navMap = {
+                    'homeScreen': 0,
+                    'dailyRecovery': 1,
+                    'twelveSteps': 2
+                };
+                
+                if (navMap[screenId] !== undefined) {
+                    document.querySelectorAll('.nav-item')[navMap[screenId]].classList.add('active');
+                }
+            },
+            
+            openModal(modalId) {
+                document.getElementById(modalId).classList.add('active');
+            },
+            
+            closeModal(modalId) {
+                document.getElementById(modalId).classList.remove('active');
+            },
+            
+            // Sobriety Timer Functions
+            updateSobrietyTimer() {
+                const now = new Date();
+                const sobrietyStart = new Date(this.sobrietyDate);
+                const diff = now - sobrietyStart;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                
+                const timerElement = document.getElementById('sobrietyTimer');
+                if (timerElement) {
+                    if (days === 0) {
+                        timerElement.textContent = `${hours} Hours`;
+                    } else if (days === 1) {
+                        timerElement.textContent = `1 Day`;
+                    } else {
+                        timerElement.textContent = `${days} Days`;
+                    }
+                }
+            },
+            
+            resetTimer() {
+                if (confirm('Are you sure you want to reset your sobriety counter? Remember: Progress, not perfection. Every new start is a victory.')) {
+                    this.sobrietyDate = new Date().toISOString();
+                    localStorage.setItem('sobrietyDate', this.sobrietyDate);
+                    this.updateSobrietyTimer();
+                    this.showMessage('', 'Counter reset. Remember: God\'s mercies are new every morning.', 'info');
+                }
+            },
+            
+            setSobrietyDate() {
+                const date = prompt('Enter your sobriety start date (YYYY-MM-DD):');
+                if (date) {
+                    const parsedDate = new Date(date);
+                    if (!isNaN(parsedDate)) {
+                        this.sobrietyDate = parsedDate.toISOString();
+                        localStorage.setItem('sobrietyDate', this.sobrietyDate);
+                        this.updateSobrietyTimer();
+                        this.showMessage('', 'Sobriety date updated!', 'success');
+                    }
+                }
+            },
+            
+            // Daily Scripture
+            loadDailyScripture() {
+                const today = new Date().getDay();
+                const scripture = this.recoveryScriptures[today];
+                
+                const scriptureElement = document.getElementById('dailyScripture');
+                const referenceElement = document.getElementById('dailyReference');
+                
+                if (scriptureElement && referenceElement) {
+                    scriptureElement.textContent = scripture.text;
+                    referenceElement.textContent = scripture.ref;
+                }
+            },
+            
+            // Emergency Escape Functions
+            emergencyEscape() {
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.style.background = 'rgba(231, 76, 60, 0.95)';
+                modal.innerHTML = `
+                    <div class="modal-content" style="text-align: center;">
+                        <h2 style="color: var(--danger);">EMERGENCY ESCAPE ACTIVATED</h2>
+                        
+                        <div class="timer-display" style="background: white; color: var(--danger);">
+                            <div class="timer-label">Breathe with me:</div>
+                            <div class="timer-count" id="escapeTimer">4</div>
+                            <div class="timer-label">Hold on. This will pass.</div>
+                        </div>
+                        
+                        <div class="card" style="margin-top: 20px;">
+                            <h3>Immediate Actions:</h3>
+                            <button class="btn btn-danger btn-full" onclick="app.callAccountability()">📞 Call Accountability Partner</button>
+                            <button class="btn btn-warning btn-full" onclick="app.changeLocation()">🚶 Leave This Location NOW</button>
+                            <button class="btn btn-hope btn-full" onclick="app.prayNow()">🙏 Emergency Prayer</button>
+                            <button class="btn btn-success btn-full" onclick="app.playWorship()">🎵 Play Worship Music</button>
+                        </div>
+                        
+                        <div class="grace-card" style="margin-top: 20px;">
+                            <div class="grace-text">
+                                "The Lord is faithful, and he will strengthen you and protect you from the evil one."
+                            </div>
+                            <div class="grace-ref">2 Thessalonians 3:3</div>
+                        </div>
+                        
+                        <button class="btn btn-secondary btn-large" onclick="this.parentElement.parentElement.remove()">I'm Safe Now</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Start breathing countdown
+                this.startEmergencyBreathing();
+            },
+            
+            startEmergencyBreathing() {
+                let count = 4;
+                const timer = document.getElementById('escapeTimer');
+                if (!timer) return;
+                
+                const interval = setInterval(() => {
+                    count--;
+                    if (count === 0) {
+                        timer.textContent = 'Hold...';
+                        setTimeout(() => {
+                            timer.textContent = 'Exhale...';
+                            setTimeout(() => {
+                                count = 4;
+                                timer.textContent = count;
+                            }, 4000);
+                        }, 7000);
+                    } else if (count > 0) {
+                        timer.textContent = count;
+                    }
+                }, 1000);
+                
+                setTimeout(() => clearInterval(interval), 30000); // Stop after 30 seconds
+            },
+            
+            callAccountability() {
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                        <h2>Call for Support</h2>
+                        
+                        <div class="card">
+                            <h3>What to Say:</h3>
+                            <p style="font-size: 1.2em; line-height: 1.8;">
+                                "I'm struggling right now and need help. Can you pray with me or talk for a few minutes?"
+                            </p>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>If You Can't Call:</h3>
+                            <p>Send this text: "Code Red. Need prayer now. Please call if you can."</p>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>My Support Contacts:</h3>
+                            <textarea class="journal-textarea" id="supportContacts" placeholder="Add your accountability partner's info here..."></textarea>
+                            <button class="btn btn-success" onclick="app.saveSupportContacts()">Save Contacts</button>
+                        </div>
+                        
+                        <button class="btn btn-danger btn-large btn-full" onclick="window.location.href='tel:'">Open Phone Dialer</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Load saved contacts
+                const saved = localStorage.getItem('accountabilityContacts');
+                if (saved) {
+                    document.getElementById('supportContacts').value = saved;
+                }
+            },
+            
+            saveSupportContacts() {
+                const contacts = document.getElementById('supportContacts').value;
+                localStorage.setItem('accountabilityContacts', contacts);
+                this.showMessage('', 'Contacts saved!', 'success');
+            },
+            
+            changeLocation() {
+                alert('GET UP AND LEAVE NOW!\n\nGo to:\n• A public place\n• A friend\'s house\n• Take a walk outside\n• Drive to a parking lot\n\nJust MOVE. Your feet can take you away from temptation.');
+            },
+            
+            prayNow() {
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                        <h2>Emergency Prayer</h2>
+                        
+                        <div class="grace-card">
+                            <div class="grace-text">
+                                "Lord Jesus, I'm under attack and I need You NOW. The temptation feels overwhelming. I feel weak. I want to give in. But I know You are stronger. You faced temptation and won. Fight for me now. Give me Your strength. Help me take the next right step, even if it's small. Cover me with Your blood. Break the power of this temptation. I can't, but You can. Save me. Amen."
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Keep Praying:</h3>
+                            <ul style="line-height: 2;">
+                                <li>Repeat: "Jesus, help me" until the urge passes</li>
+                                <li>Pray the Lord's Prayer slowly</li>
+                                <li>Quote Scripture out loud</li>
+                                <li>Sing a worship song</li>
+                                <li>Call on the name of Jesus repeatedly</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="btn btn-success btn-full" onclick="this.parentElement.parentElement.remove()">Amen - I'm Fighting</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            },
+            
+            playWorship() {
+                alert('Opening worship music. Let truth fill your mind:\n\n• "Way Maker" - Sinach\n• "Goodness of God" - Bethel\n• "Reckless Love" - Cory Asbury\n• "No Longer Slaves" - Jonathan David Helser\n• "Break Every Chain" - Tasha Cobbs\n\nLet worship drive out the darkness!');
+                window.open('https://www.youtube.com/results?search_query=christian+worship+playlist', '_blank');
+            },
+            
+            // Assessment Functions
+            selectAssessment(element, category) {
+                element.classList.toggle('selected');
+                if (!this.assessmentScores[category]) {
+                    this.assessmentScores[category] = 0;
+                }
+                if (element.classList.contains('selected')) {
+                    this.assessmentScores[category]++;
+                } else {
+                    this.assessmentScores[category]--;
+                }
+            },
+            
+            calculateAssessment() {
+                const total = Object.values(this.assessmentScores).reduce((a, b) => a + b, 0);
+                let message = '';
+                let level = '';
+                
+                if (total <= 5) {
+                    level = 'Early Stage';
+                    message = 'You\'re showing early warning signs. This is the best time to get help. Don\'t wait for it to get worse.';
+                } else if (total <= 10) {
+                    level = 'Moderate';
+                    message = 'Your struggle is significant. You need support, accountability, and possibly professional help. You can\'t do this alone.';
+                } else {
+                    level = 'Severe';
+                    message = 'You\'re dealing with serious addiction. Please seek professional help immediately. There\'s no shame in needing intensive support.';
+                }
+                
+                document.getElementById('assessmentResult').innerHTML = `
+                    <div class="message message-warning">
+                        <h3>Assessment Level: ${level}</h3>
+                        <p>${message}</p>
+                        <p style="margin-top: 15px;"><strong>Remember:</strong> This assessment doesn\'t define you. It\'s simply a tool to understand where you are so you can get the right help.</p>
+                    </div>
+                `;
+            },
+            
+            // Journal Functions
+            saveJournal() {
+                const entry = {
+                    date: new Date().toISOString(),
+                    feeling: document.getElementById('journalFeeling').value,
+                    trigger: document.getElementById('journalTrigger').value,
+                    grace: document.getElementById('journalGrace').value,
+                    gratitude: document.getElementById('journalGratitude').value
+                };
+                
+                if (!entry.feeling && !entry.trigger && !entry.grace && !entry.gratitude) {
+                    this.showMessage('journalMessage', 'Please write something before saving', 'warning');
+                    return;
+                }
+                
+                this.journalEntries.unshift(entry);
+                localStorage.setItem('recoveryJournal', JSON.stringify(this.journalEntries));
+                
+                // Clear form
+                document.getElementById('journalFeeling').value = '';
+                document.getElementById('journalTrigger').value = '';
+                document.getElementById('journalGrace').value = '';
+                document.getElementById('journalGratitude').value = '';
+                
+                this.showMessage('journalMessage', '✓ Entry saved. Your honesty is part of your healing.', 'success');
+                this.loadJournalEntries();
+            },
+            
+            loadJournalEntries() {
+                const container = document.getElementById('journalEntries');
+                if (!container) return;
+                
+                if (this.journalEntries.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #999;">No entries yet. Start writing your journey.</p>';
+                    return;
+                }
+                
+                let html = '';
+                this.journalEntries.slice(0, 5).forEach(entry => {
+                    const date = new Date(entry.date);
+                    const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                    
+                    html += `
+                        <div class="resource-item">
+                            <div class="resource-title">${dateStr}</div>
+                            <div class="resource-content">
+                                ${entry.feeling ? `<p><strong>Feeling:</strong> ${entry.feeling}</p>` : ''}
+                                ${entry.trigger ? `<p><strong>Triggers:</strong> ${entry.trigger}</p>` : ''}
+                                ${entry.grace ? `<p><strong>God\'s Grace:</strong> ${entry.grace}</p>` : ''}
+                                ${entry.gratitude ? `<p><strong>Gratitude:</strong> ${entry.gratitude}</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            },
+            
+            // Addiction-Specific Support
+            showAddictionSupport(type) {
+                this.currentAddiction = type;
+                const content = this.getAddictionContent(type);
+                document.getElementById('addictionTitle').textContent = content.title;
+                document.getElementById('addictionContent').innerHTML = content.html;
+                this.showScreen('addictionSupport');
+            },
+            
+            getAddictionContent(type) {
+                const content = {
+                    pornography: {
+                        title: 'Sexual Addiction Support',
+                        html: `
+                            <div class="grace-card">
+                                <div class="grace-text">
+                                    "Flee from sexual immorality. All other sins a person commits are outside the body, but whoever sins sexually, sins against their own body."
+                                </div>
+                                <div class="grace-ref">1 Corinthians 6:18</div>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Understanding Sexual Addiction</h2>
+                                <p>Sexual addiction isn't just about sex—it's about medicating pain, filling emptiness, and seeking connection in broken ways. You're not a pervert; you're a person in pain seeking relief in the wrong place.</p>
+                                
+                                <h3>The Cycle:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li><strong>Trigger:</strong> Stress, loneliness, boredom, rejection</li>
+                                    <li><strong>Fantasy:</strong> Escaping into sexual thoughts</li>
+                                    <li><strong>Ritual:</strong> The hunt, the build-up</li>
+                                    <li><strong>Acting Out:</strong> Viewing porn, masturbation, etc.</li>
+                                    <li><strong>Shame:</strong> Self-hatred and promises to never do it again</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Breaking Free</h2>
+                                <h3>Practical Barriers:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Install accountability software (Covenant Eyes, etc.)</li>
+                                    <li>Move devices out of private spaces</li>
+                                    <li>Delete apps and bookmarks</li>
+                                    <li>Create a "fire drill" plan for temptation</li>
+                                    <li>Identify your triggers and avoid them</li>
+                                </ul>
+                                
+                                <h3>Spiritual Weapons:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Memorize Psalm 51 and pray it daily</li>
+                                    <li>Fast regularly to strengthen spiritual discipline</li>
+                                    <li>Replace fantasies with prayer for the people involved</li>
+                                    <li>See people as souls, not objects</li>
+                                    <li>Fill your mind with whatever is pure (Phil 4:8)</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    alcohol: {
+                        title: 'Alcohol Recovery',
+                        html: `
+                            <div class="grace-card">
+                                <div class="grace-text">
+                                    "Do not get drunk on wine, which leads to debauchery. Instead, be filled with the Spirit."
+                                </div>
+                                <div class="grace-ref">Ephesians 5:18</div>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Truth About Alcohol</h2>
+                                <p>Whether you call it "having a few drinks" or admit it's alcoholism, if alcohol controls you instead of you controlling it, you need help. There's no shame in admitting this.</p>
+                                
+                                <h3>Warning Signs:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Drinking to cope with emotions</li>
+                                    <li>Hiding or lying about drinking</li>
+                                    <li>Needing more to get the same effect</li>
+                                    <li>Drinking alone regularly</li>
+                                    <li>Failed attempts to cut down</li>
+                                    <li>Blackouts or memory gaps</li>
+                                    <li>Relationships suffering due to drinking</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Path to Sobriety</h2>
+                                <h3>Medical Considerations:</h3>
+                                <p style="color: var(--danger);"><strong>WARNING:</strong> Alcohol withdrawal can be dangerous. If you're drinking heavily daily, consult a doctor before stopping.</p>
+                                
+                                <h3>Recovery Steps:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Consider medical detox if needed</li>
+                                    <li>Remove all alcohol from your home</li>
+                                    <li>Avoid bars, parties, and triggers</li>
+                                    <li>Find an AA group or Celebrate Recovery</li>
+                                    <li>Get a sponsor who follows Christ</li>
+                                    <li>Replace drinking rituals with healthy ones</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    drugs: {
+                        title: 'Drug Addiction Recovery',
+                        html: `
+                            <div class="grace-card">
+                                <div class="grace-text">
+                                    "Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God?"
+                                </div>
+                                <div class="grace-ref">1 Corinthians 6:19</div>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Breaking Drug Dependency</h2>
+                                <p>Whether prescription or illegal, drug addiction is slavery. But Jesus came to set the captives free—including you.</p>
+                                
+                                <h3>Getting Clean Safely:</h3>
+                                <p style="color: var(--danger);"><strong>CRITICAL:</strong> Some drugs require medical supervision to stop safely. Don't risk your life—get medical help.</p>
+                                
+                                <ul style="line-height: 1.8;">
+                                    <li>See a doctor for withdrawal management</li>
+                                    <li>Consider inpatient treatment</li>
+                                    <li>Join NA or Celebrate Recovery</li>
+                                    <li>Cut ties with dealers and using friends</li>
+                                    <li>Delete contacts and block numbers</li>
+                                    <li>Change your routines completely</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    gambling: {
+                        title: 'Gambling Addiction',
+                        html: `
+                            <div class="grace-card">
+                                <div class="grace-text">
+                                    "For the love of money is a root of all kinds of evil. Some people, eager for money, have wandered from the faith and pierced themselves with many griefs."
+                                </div>
+                                <div class="grace-ref">1 Timothy 6:10</div>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>The Gambling Trap</h2>
+                                <p>Gambling addiction isn't about money—it's about the high, the escape, the fantasy of the "big win" that will solve everything. But the house always wins, and you always lose more than money.</p>
+                                
+                                <h3>Breaking the Cycle:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Self-exclude from casinos and online sites</li>
+                                    <li>Give financial control to someone else</li>
+                                    <li>Block gambling sites and apps</li>
+                                    <li>Avoid sports bars during games</li>
+                                    <li>Find Gamblers Anonymous meetings</li>
+                                    <li>Address underlying pain you're escaping</li>
+                                    <li>Replace the thrill with healthy activities</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    food: {
+                        title: 'Food Addiction',
+                        html: `
+                            <div class="grace-card">
+                                <div class="grace-text">
+                                    "So whether you eat or drink or whatever you do, do it all for the glory of God."
+                                </div>
+                                <div class="grace-ref">1 Corinthians 10:31</div>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>When Food Becomes an Idol</h2>
+                                <p>Food addiction is particularly challenging because you can't abstain completely. You must learn to relate to food in a healthy way while still needing it to survive.</p>
+                                
+                                <h3>Finding Freedom:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Identify emotional eating triggers</li>
+                                    <li>Practice mindful, prayerful eating</li>
+                                    <li>Seek counseling for underlying issues</li>
+                                    <li>Consider Overeaters Anonymous</li>
+                                    <li>Don't diet—pursue health</li>
+                                    <li>Address body image with God's truth</li>
+                                    <li>Find non-food comfort sources</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    technology: {
+                        title: 'Technology Addiction',
+                        html: `
+                            <div class="grace-card">
+                                <div class="grace-text">
+                                    "I will not set before my eyes anything that is worthless. I hate the work of those who fall away; it shall not cling to me."
+                                </div>
+                                <div class="grace-ref">Psalm 101:3</div>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Digital Dependency</h2>
+                                <p>Technology addiction—gaming, social media, internet—steals time, relationships, and purpose. It promises connection but delivers isolation.</p>
+                                
+                                <h3>Digital Detox Plan:</h3>
+                                <ul style="line-height: 1.8;">
+                                    <li>Set specific time limits on apps</li>
+                                    <li>Create phone-free zones (bedroom, meals)</li>
+                                    <li>Use grayscale to reduce phone appeal</li>
+                                    <li>Delete social media apps (use browser if needed)</li>
+                                    <li>Find real-world replacements for digital habits</li>
+                                    <li>Practice digital sabbaths</li>
+                                    <li>Replace screen time with face time</li>
+                                </ul>
+                            </div>
+                        `
+                    }
+                };
+                
+                return content[type] || { title: 'Support', html: '<p>Content not found</p>' };
+            },
+            
+            // Other Functions
+            toggleCommitment(element) {
+                element.classList.toggle('selected');
+            },
+            
+            showBreathingExercise() {
+                const modal = document.createElement('div');
+                modal.className = 'modal active';
+                modal.innerHTML = `
+                    <div class="modal-content" style="text-align: center;">
+                        <button class="modal-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                        <h2>Calm Your Mind</h2>
+                        
+                        <div class="timer-display">
+                            <div class="timer-label">Follow this pattern:</div>
+                            <div class="timer-count" id="breathCount">Ready?</div>
+                        </div>
+                        
+                        <p>Breathe in for 4, Hold for 7, Out for 8</p>
+                        
+                        <button class="btn btn-large" onclick="app.startBreathing()">Start</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            },
+            
+            startBreathing() {
+                const display = document.getElementById('breathCount');
+                let phase = 0;
+                const phases = ['Breathe In: 4', 'Hold: 7', 'Breathe Out: 8'];
+                const durations = [4000, 7000, 8000];
+                
+                function cycle() {
+                    if (phase >= 3) phase = 0;
+                    display.textContent = phases[phase];
+                    setTimeout(() => {
+                        phase++;
+                        if (phase < 4) cycle();
+                    }, durations[phase]);
+                }
+                
+                cycle();
+            },
+            
+            callSponsor() {
+                this.callAccountability();
+            },
+            
+            startStepWork() {
+                this.showScreen('journal');
+                alert('Use your journal to work through Step 1. Be completely honest about your powerlessness and how your life has become unmanageable.');
+            },
+            
+            showStepProgress() {
+                alert('Step tracking coming soon. For now, work with a sponsor or trusted friend to track your progress through the 12 steps.');
+            },
+            
+            showMessage(elementId, message, type) {
+                if (!elementId) {
+                    const toast = document.createElement('div');
+                    toast.className = `message message-${type}`;
+                    toast.style.position = 'fixed';
+                    toast.style.top = '100px';
+                    toast.style.left = '50%';
+                    toast.style.transform = 'translateX(-50%)';
+                    toast.style.zIndex = '3000';
+                    toast.style.minWidth = '300px';
+                    toast.textContent = message;
+                    document.body.appendChild(toast);
+                    setTimeout(() => toast.remove(), 3000);
+                    return;
+                }
+                
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = `<div class="message message-${type}">${message}</div>`;
+                    setTimeout(() => {
+                        element.innerHTML = '';
+                    }, 5000);
+                }
+            }
+        };
+        
+        // Initialize app on load
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>
